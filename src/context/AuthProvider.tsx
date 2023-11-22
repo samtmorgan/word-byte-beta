@@ -1,42 +1,38 @@
-import React, { useEffect } from "react";
-import { fakeAuthProvider } from "../auth";
+import React, { useCallback, useMemo } from 'react';
+import fakeAuthProvider from '../auth';
+import AuthContext from './AuthContext';
 
-interface AuthContextType {
-  user: string | null;
-  signin: (user: string, callback: VoidFunction) => void;
-  signout: (callback: VoidFunction) => void;
-}
-
-const AuthContext = React.createContext<AuthContextType>(null!);
-
+// This provider is in it's own file to support vite's HMR
 function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = React.useState<string | null>(null);
 
-  const signin = (newUser: string, callback: VoidFunction) => {
-    return fakeAuthProvider.signin(() => {
+  const signIn = useCallback((newUser: string, callback: VoidFunction) => {
+    fakeAuthProvider.signIn(() => {
       setUser(newUser);
       callback();
     });
-  };
+  }, []);
 
-  const signout = (callback: VoidFunction) => {
-    return fakeAuthProvider.signout(() => {
+  const signOut = useCallback((callback?: VoidFunction) => {
+    fakeAuthProvider.signOut(() => {
       setUser(null);
-      callback();
+      if (callback) {
+        callback();
+      }
     });
-  };
+  }, []);
 
-  useEffect(() => {
-    console.log("AuthProvider: user", user);
-  }, [user]);
+  //   useEffect(() => {
+  //     console.log('AuthProvider: user', user);
+  //   }, [user]);
 
-  const value = { user, signin, signout };
+  const value = useMemo(
+    () => ({ user, signIn, signOut }),
+    // eslint-disable-next-line comma-dangle
+    [user, signIn, signOut],
+  );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-function useAuth() {
-  return React.useContext(AuthContext);
-}
-
-export { AuthProvider, useAuth };
+export default AuthProvider;

@@ -1,24 +1,26 @@
-import { useEffect } from "react";
-import { useAuth } from "../context/AuthProvider";
-import { Link } from "react-router-dom";
+// import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 
 export default function Home() {
   const auth = useAuth();
 
   const userIsSignedIn = auth.user !== null;
 
-  useEffect(() => {
-    console.log("Home: userIsSignedIn", userIsSignedIn);
-    console.log("Home: auth.user", auth.user);
-  }, [auth.user, userIsSignedIn]);
+  //   useEffect(() => {
+  //     console.log('Home: userIsSignedIn', userIsSignedIn);
+  //     console.log('Home: auth.user', auth.user);
+  //   }, [auth.user, userIsSignedIn]);
 
   return (
     <div>
-      {" "}
       <h2>Home</h2>
       {userIsSignedIn ? (
         <>
-          <h3>Hello {auth.user}</h3>
+          <h3>
+            Hello
+            {auth.user}
+          </h3>
           <p>
             <Link to="/test">Test</Link>
           </p>
@@ -26,7 +28,7 @@ export default function Home() {
             <Link to="/settings">Settings</Link>
           </p>
           <p>
-            <button type="button" onClick={() => auth.signout()}>
+            <button type="button" onClick={() => auth.signOut()}>
               Sign Out
             </button>
           </p>
