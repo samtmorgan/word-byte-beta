@@ -3,14 +3,14 @@
  */
 const fakeAuthProvider = {
   isAuthenticated: false,
-  signin(callback: VoidFunction) {
+  signIn(callback: VoidFunction) {
     fakeAuthProvider.isAuthenticated = true;
     setTimeout(callback, 100); // fake async
   },
-  signout(callback: VoidFunction) {
+  signOut(callback: VoidFunction) {
     fakeAuthProvider.isAuthenticated = false;
     setTimeout(callback, 100);
   },
 };
 
-export { fakeAuthProvider };
+export default fakeAuthProvider;

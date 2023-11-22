@@ -1,20 +1,20 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
+import { useLocation, useNavigate } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 
 export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const auth = useAuth();
 
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || '/';
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    const username = formData.get("username") as string;
+    const username = formData.get('username') as string;
 
-    auth.signin(username, () => {
+    auth.signIn(username, () => {
       // Send them back to the page they tried to visit when they were
       // redirected to the login page. Use { replace: true } so we don't create
       // another entry in the history stack for the login page.  This means that
@@ -30,9 +30,10 @@ export default function Login() {
       <p>Login</p>
 
       <form onSubmit={handleSubmit}>
-        <label>
-          Username: <input name="username" type="text" />
-        </label>{" "}
+        <label htmlFor="username">
+          Username:
+          <input name="username" type="text" />
+        </label>
         <button type="submit">Login</button>
       </form>
     </div>

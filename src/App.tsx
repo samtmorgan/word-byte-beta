@@ -1,13 +1,13 @@
-import "./index.css";
-import { Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
-import { AuthProvider } from "./context/AuthProvider";
-import Home from "./pages/Home";
-import Test from "./pages/Test";
-import RequireAuth from "./components/RequireAuth";
-import ErrorPage from "./pages/ErrorPage";
-import Settings from "./pages/Settings";
-import Layout from "./context/Layout";
+import './index.css';
+import { Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
+import AuthProvider from './context/AuthProvider';
+import Home from './pages/Home';
+import Test from './pages/Test';
+import RequireAuth from './components/RequireAuth';
+import ErrorPage from './pages/ErrorPage';
+import Settings from './pages/Settings';
+import Layout from './context/Layout';
 
 export default function App() {
   return (
@@ -18,19 +18,19 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route
             path="/test"
-            element={
+            element={(
               <RequireAuth>
                 <Test />
               </RequireAuth>
-            }
+            )}
           />
           <Route
             path="/settings"
-            element={
+            element={(
               <RequireAuth>
                 <Settings />
               </RequireAuth>
-            }
+            )}
           />
         </Route>
         <Route path="*" element={<ErrorPage />} />

@@ -1,9 +1,11 @@
-import { createContext } from "react";
+import { createContext } from 'react';
 
 interface AuthContextType {
   user: string | null;
-  signin: (user: string, callback: VoidFunction) => void;
-  signout: (callback: VoidFunction) => void;
+  signIn: (user: string, callback: VoidFunction) => void;
+  signOut: (callback: VoidFunction) => void;
 }
 
-export const AuthContext = createContext<AuthContextType>(null!);
+const AuthContext = createContext<AuthContextType>(null!);
+
+export default AuthContext;
