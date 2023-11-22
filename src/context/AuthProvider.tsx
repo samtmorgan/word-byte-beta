@@ -1,14 +1,8 @@
 import React, { useEffect } from "react";
 import { fakeAuthProvider } from "../auth";
+import { AuthContext } from "./AuthContext";
 
-interface AuthContextType {
-  user: string | null;
-  signin: (user: string, callback: VoidFunction) => void;
-  signout: (callback: VoidFunction) => void;
-}
-
-const AuthContext = React.createContext<AuthContextType>(null!);
-
+// This provider is in it's own file to support vite's HMR
 function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = React.useState<string | null>(null);
 
@@ -35,8 +29,4 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-function useAuth() {
-  return React.useContext(AuthContext);
-}
-
-export { AuthProvider, useAuth };
+export { AuthProvider };

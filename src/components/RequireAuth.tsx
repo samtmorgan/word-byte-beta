@@ -1,7 +1,8 @@
 import { Navigate, useLocation } from "react-router-dom";
-import { useAuth } from "../context/AuthProvider";
 import React from "react";
+import { useAuth } from "../hooks/useAuth";
 
+// this component is used to wrap around any page that requires authentication
 export default function RequireAuth({ children }: { children: JSX.Element }) {
   const auth = useAuth();
   const location = useLocation();
