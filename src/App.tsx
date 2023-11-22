@@ -23,6 +23,7 @@ export default function App() {
                 <Test />
               </RequireAuth>
             )}
+            errorElement={<ErrorPage />}
           />
           <Route
             path="/settings"
@@ -31,6 +32,7 @@ export default function App() {
                 <Settings />
               </RequireAuth>
             )}
+            errorElement={<ErrorPage />}
           />
         </Route>
         <Route path="*" element={<ErrorPage />} />
