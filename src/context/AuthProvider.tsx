@@ -13,10 +13,12 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
-  const signOut = useCallback((callback: VoidFunction) => {
+  const signOut = useCallback((callback?: VoidFunction) => {
     fakeAuthProvider.signOut(() => {
       setUser(null);
-      callback();
+      if (callback) {
+        callback();
+      }
     });
   }, []);
 
@@ -24,7 +26,11 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
   //     console.log('AuthProvider: user', user);
   //   }, [user]);
 
-  const value = useMemo(() => ({ user, signIn, signOut }), [user, signIn, signOut]);
+  const value = useMemo(
+    () => ({ user, signIn, signOut }),
+    // eslint-disable-next-line comma-dangle
+    [user, signIn, signOut],
+  );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

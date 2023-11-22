@@ -1,5 +1,5 @@
 import { Navigate, useLocation } from 'react-router-dom';
-import React from 'react';
+// import React from 'react';
 import useAuth from '../hooks/useAuth';
 
 // this component is used to wrap around any page that requires authentication
