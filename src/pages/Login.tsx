@@ -21,7 +21,9 @@ export default function Login() {
       // when they get to the protected page and click the back button, they
       // won't end up back on the login page, which is also really nice for the
       // user experience.
-      navigate(from, { replace: true });
+      navigate(from, {
+        replace: true,
+      });
     });
   }
 

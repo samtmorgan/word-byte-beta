@@ -6,6 +6,10 @@ Templated with [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-
 
 Configured mostly as per [this](https://dev.to/pappijx/effortlessly-setting-up-your-react-project-with-vite-husky-typescript-and-eslint-a-comprehensive-guide-n5l) guide
 
+## vitest testing
+
+Configured mostly as per [this](https://codingwithmanny.medium.com/quick-vitest-setup-with-vitejs-react-typescript-bea9d3a01b07) guide
+
 ## Expanding the ESLint configuration \*\*vite guide - not implemented\*\*
 
 If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
