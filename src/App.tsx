@@ -1,5 +1,5 @@
 import './index.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 import Login from './pages/Login';
 import AuthProvider from './context/AuthProvider';
 import Home from './pages/Home';
@@ -12,31 +12,33 @@ import Layout from './context/Layout';
 export default function App() {
   return (
     <AuthProvider>
-      <Routes>
-        <Route element={<Layout />} errorElement={<ErrorPage />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/test"
-            element={(
-              <RequireAuth>
-                <Test />
-              </RequireAuth>
-            )}
-            errorElement={<ErrorPage />}
-          />
-          <Route
-            path="/settings"
-            element={(
-              <RequireAuth>
-                <Settings />
-              </RequireAuth>
-            )}
-            errorElement={<ErrorPage />}
-          />
-        </Route>
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
+      <Router>
+        <Routes>
+          <Route element={<Layout />} errorElement={<ErrorPage />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/test"
+              element={(
+                <RequireAuth>
+                  <Test />
+                </RequireAuth>
+              )}
+              errorElement={<ErrorPage />}
+            />
+            <Route
+              path="/settings"
+              element={(
+                <RequireAuth>
+                  <Settings />
+                </RequireAuth>
+              )}
+              errorElement={<ErrorPage />}
+            />
+          </Route>
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </Router>
     </AuthProvider>
   );
 }

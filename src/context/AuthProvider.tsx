@@ -27,7 +27,11 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
   //   }, [user]);
 
   const value = useMemo(
-    () => ({ user, signIn, signOut }),
+    () => ({
+      user,
+      signIn,
+      signOut,
+    }),
     // eslint-disable-next-line comma-dangle
     [user, signIn, signOut],
   );
